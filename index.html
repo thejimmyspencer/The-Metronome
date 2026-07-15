@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101827">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon.svg">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <title>Pulse Setlist</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="flash" id="flash" aria-hidden="true"></div>
+  <main class="app">
+    <header class="topbar"><div><p class="eyebrow">PULSE</p><h1>Setlist metronome</h1></div><button class="icon-button" id="settingsButton" aria-label="Open settings">⚙</button></header>
+    <section class="now-playing" aria-live="polite">
+      <p class="eyebrow">NOW PLAYING</p>
+      <h2 id="songName">Warm-up</h2>
+      <p id="songDetails">4 / 4 · 100 BPM</p>
+      <div class="beat-row" id="beatRow" aria-label="Beat indicator"></div>
+      <p id="beatText">Ready</p>
+    </section>
+    <section class="tempo-panel" aria-label="Metronome controls">
+      <button class="round-button secondary" id="slower" aria-label="Decrease tempo by 1 BPM">−</button>
+      <div><output id="bpmDisplay">100</output><span>BPM</span></div>
+      <button class="round-button secondary" id="faster" aria-label="Increase tempo by 1 BPM">+</button>
+    </section>
+    <label class="range-label" for="bpm">Tempo <input id="bpm" type="range" min="40" max="240" value="100"></label>
+    <button class="play-button" id="play" aria-pressed="false"><span id="playIcon">▶</span><span id="playLabel">Start</span></button>
+    <section class="setlist-section" aria-labelledby="setlistTitle">
+      <div class="section-heading"><div><p class="eyebrow">SET LIST</p><h2 id="setlistTitle">Tonight</h2></div><button class="text-button" id="newSetlist">+ New list</button></div>
+      <label class="sr-only" for="setlistPicker">Choose set list</label><select id="setlistPicker" class="setlist-picker"></select>
+      <div class="section-heading setlist-actions"><button class="text-button" id="renameSetlist">Rename</button><button class="text-button" id="addSong">+ Add song</button></div>
+      <ol id="setlist" class="setlist"></ol>
+    </section>
+  </main>
+  <dialog id="songDialog"><form method="dialog" id="songForm"><div class="dialog-heading"><h2 id="dialogTitle">Add song</h2><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label>Song title<input id="titleInput" required maxlength="60" placeholder="Song title"></label><div class="input-grid"><label>Tempo<input id="tempoInput" required type="number" min="40" max="240" value="120"></label><label>Time signature<select id="signatureInput"><option value="4">4 / 4</option><option value="3">3 / 4</option><option value="5">5 / 4</option><option value="6">6 / 8</option></select></label></div><label>Notes <textarea id="notesInput" maxlength="160" placeholder="Optional cue or note"></textarea></label><div class="dialog-actions"><button class="text-button danger" id="deleteSong" type="button" hidden>Delete</button><span></span><button class="text-button" value="cancel">Cancel</button><button class="solid-button" id="saveSong" value="default">Save</button></div></form></dialog>
+  <dialog id="settingsDialog"><form method="dialog"><div class="dialog-heading"><h2>Settings</h2><button class="icon-button" value="cancel" aria-label="Close">×</button></div><label class="switch-row"><span>Sound</span><input id="soundSetting" type="checkbox" checked></label><label class="switch-row"><span>Screen flash</span><input id="flashSetting" type="checkbox" checked></label><p class="hint">The first beat is emphasized with a higher tone and brighter flash.</p></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>

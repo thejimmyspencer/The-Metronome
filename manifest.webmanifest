@@ -1,0 +1,10 @@
+{
+  "name": "Pulse Setlist Metronome",
+  "short_name": "Pulse",
+  "description": "A visual and audio metronome with saved set lists.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#101827",
+  "theme_color": "#101827",
+  "icons": [{ "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
